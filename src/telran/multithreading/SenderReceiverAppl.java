@@ -51,7 +51,8 @@ public class SenderReceiverAppl {
 
 	private static void passMessageBox(BlockingQueue<String> oddMessageBox, BlockingQueue<String> evenMessageBox, int i,
 			ConsumerReceiver receiver) {
-		if (i % 2 != 0) {
+		String name = receiver.getName();
+		if (name.charAt(name.length()-1) % 2 == 0) {
 			receiver.setMessageBox(evenMessageBox);
 		} else {
 			receiver.setMessageBox(oddMessageBox);
