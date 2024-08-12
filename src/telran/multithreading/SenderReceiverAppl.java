@@ -42,14 +42,14 @@ public class SenderReceiverAppl {
 			BlockingQueue<String> evenMessageBox, int nReceivers) {
 		ConsumerReceiver[] receivers = IntStream.range(0, nReceivers).mapToObj(i -> {
 			ConsumerReceiver receiver = new ConsumerReceiver();
-			passMessageBox(oddMessageBox, evenMessageBox, i, receiver);
+			passMessageBox(oddMessageBox, evenMessageBox, receiver);
 			return receiver;
 		}).toArray(ConsumerReceiver[]::new);
 		Arrays.stream(receivers).forEach(ConsumerReceiver::start);
 		return receivers;
 	}
 
-	private static void passMessageBox(BlockingQueue<String> oddMessageBox, BlockingQueue<String> evenMessageBox, int i,
+	private static void passMessageBox(BlockingQueue<String> oddMessageBox, BlockingQueue<String> evenMessageBox, 
 			ConsumerReceiver receiver) {
 		String name = receiver.getName();
 		if (name.charAt(name.length()-1) % 2 == 0) {
